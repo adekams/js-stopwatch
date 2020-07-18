@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>JavaScript Stopwatch</title>
+</head>
+<body>
+    <h1>JavaScript StopWatch</h1>
+
+    <div class="time-display">
+        <span id="seconds">00</span> : <span id="tens">00</span>
+    </div>
+    <div class="btns">
+        <button id="start">Start</button>
+        <button id="pause">Pause</button>
+        <button id="reset">Reset</button>
+    </div>
+
+    <script>
+        window.onload = function () {
+            var tens = 00;
+            var seconds = 00;
+
+
+            var addSeconds = document.getElementById("seconds");
+            var addTens = document.getElementById("tens");
+
+            var startButton = document.getElementById("start");
+            var pauseButton = document.getElementById("pause");
+            var resetButton = document.getElementById("reset");
+
+            var interval;
+
+            startButton.onclick = function(){
+                clearInterval(interval);
+                interval = setInterval(startTimer, 10);
+            }
+
+            pauseButton.onclick = function (){
+                clearInterval(interval)
+            }
+
+            resetButton.onclick = function(){
+                clearInterval(interval);
+                tens = "00";
+                seconds = "00";
+                addSeconds.innerHTML = tens;
+                addTens.innerHTML = seconds;
+
+            }
+
+            function startTimer () {
+                tens++;
+                //if tens < 9, add prefix 0, else tens
+                addTens.innerHTML = (tens < 9)?  "0" + tens: tens
+                
+                if (tens > 99) {
+                    seconds ++;
+                    addSeconds.innerHTML = "0" + seconds;
+
+                    //start again from 0
+                    tens = 0;
+                    addTens.innerHTML = "0" + 0;
+                }
+
+                //remove extra 0 when secs greater than 9
+                if (seconds > 9) {
+                    addSeconds.innerHTML = seconds
+                }
+            }
+        }
+    </script>
+</body>
+</html>
