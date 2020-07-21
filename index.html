@@ -53,8 +53,8 @@
 
             function startTimer () {
                 tens++;
-                //if tens < 9, add prefix 0, else tens
-                addTens.innerHTML = (tens < 9)?  "0" + tens: tens
+                //if tens < / = 9, add prefix 0, else tens
+                addTens.innerHTML = (tens <= 9)?  "0" + tens: tens
                 
                 if (tens > 99) {
                     seconds ++;
